@@ -27,6 +27,11 @@ z[0]['y']=30
 print (z)
 
 #2-Iterate Through a List of Dictionaries
-for i in students:
-    for key,val in i.items():
-        print(key, " _ ", val)
+def iterateDictionary(some_list):
+    for i in some_list:
+        for key,val in i.items():
+            print(key, " _ ", val)
+iterateDictionary(students)
+
+
+
