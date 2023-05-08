@@ -25,3 +25,8 @@ print(sports_directory)
 #4.Change the value 20 in z to 30
 z[0]['y']=30
 print (z)
+
+#2-Iterate Through a List of Dictionaries
+for i in students:
+    for key,val in i.items():
+        print(key, " _ ", val)
