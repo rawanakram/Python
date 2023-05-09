@@ -41,4 +41,12 @@ def iterateDictionary2(key_name, some_list):
 iterateDictionary2('first_name', students)
 iterateDictionary2('last_name', students)
 
+#4-Iterate Through a Dictionary with List Values
+def printInfo(some_dict):
+    for key,val in some_dict.items():
+        print(len(val),key)
+        for value in val:
+            print(value)
+
+printInfo(sports_directory)
 
