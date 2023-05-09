@@ -33,5 +33,12 @@ def iterateDictionary(some_list):
             print(key, " _ ", val)
 iterateDictionary(students)
 
+#3-Get Values From a List of Dictionaries
+def iterateDictionary2(key_name, some_list):
+    for dictionary in some_list:
+        print(dictionary [key_name])
+
+iterateDictionary2('first_name', students)
+iterateDictionary2('last_name', students)
 
 
