@@ -1,0 +1,38 @@
+1-pip list:
+it outputs all the installed packages.  
+
+2-deactivate:
+ deactivate my virtual environment
+
+3-pip3 list:
+when i deactivate the virtual environment and excute this command it outputs just the packages
+that are global defined but it didn'nt show any packages that are in stalled inside the virtual environment
+because its not active  
+
+
+4-call myEnvironments/py3Env/Scripts/activate:
+it will reactivate my virtual environment
+
+5-pip install Django==2.2.4
+it installs the Django package to my virtual invronment
+it give me that (Successfully installed Django-2.2.4 pytz-2023.3 sqlparse-0.4.4)
+
+6-pip freeze:
+it give me that
+(Django==2.2.4
+pytz==2023.3
+sqlparse==0.4.4)
+it shows the packages the user installed and their dependencies so when i used it 
+after installing Django package it shows me the Django and its dependencies.   
+
+7-pip freeze > requirements.txt:
+it is record an environment's current package list into requirements.txt.
+
+8-pip uninstall Django:
+it give me that( Successfully uninstalled Django-2.2.4)
+so it deletes the Django package from my virtual invronment
+
+9-pip show Django:
+it doesnot show me anything about Django package because i uninstalled it previousely. 
+
+
