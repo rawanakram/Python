@@ -13,6 +13,10 @@ class User:
     def display_user_balance(self):
         print("User:",self.name,", Balance:",self.account_balance,"$")
 
+    def transfer_money(self, second_account, amount):
+        self.make_withdrawal(amount)
+        second_account.make_deposit(amount)
+
     
 #Create 3 instances of the User class
 Ahmad = User("Ahmad Taha", "ahmad@python.com")
@@ -38,4 +42,9 @@ Emy.make_deposit(1200)
 Emy.make_withdrawal(100)
 Emy.make_withdrawal(250)
 Emy.make_withdrawal(120)
+Emy.display_user_balance()
+
+#have the first user transfer money to the third user and then print both users' balances
+Ahmad.transfer_money(Emy,100)
+Ahmad.display_user_balance()
 Emy.display_user_balance()
