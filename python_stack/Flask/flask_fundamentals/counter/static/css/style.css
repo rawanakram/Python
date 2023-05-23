@@ -1,0 +1,9 @@
+div{
+    width: 30%;
+    display: flex;
+   justify-content: space-evenly;
+   margin: 0 auto;
+}
+button{
+    width:200px;
+}
