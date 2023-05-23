@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Checkout</title>
+</head>
+<body>
+    <div class="container mw-100">
+        <div class="text-bg-secondary p-3">
+            <h1 class="text-center" >Thank you for your order!</h1>
+            <p class="text-center">We ordered {{ count }} items for you and charged your <br>
+            student account on {{ now }}.</p>
+        </div>
+        <div class="text-bg-light p-3 mw-100">
+            <h5 style="margin-left:335px ;">You've ordered</h5>
+            <table class="table table-striped table-bordered border border-dark w-50 p-3" style="margin: 0 auto;">
+                <thead class="table-secondary"></thead>
+                    <tr>
+                        <th scope="col">Fruit Name</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Strawberry</td>
+                    <td>{{ strawberry }}</td>
+                </tr>
+                <tr>
+                    <td>Raspberry</td>
+                    <td>{{ raspberry }}</td>
+                </tr>
+                <tr>
+                    <td>Apple</td>
+                    <td>{{ apple }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="text-bg-secondary p-3">
+            <h5 style="margin-left:510px ;"><u>Your information:</u></h5>
+            <table class="table table-borderless w-25 p-3" style="margin: 0 auto;">
+                <tr>
+                    <th>Name:</th>
+                    <td>{{ first_name }} {{ last_name }}</td>
+                </tr>
+                <tr>
+                    <th>Your Student Id:</th>
+                    <td>{{ student_id }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
