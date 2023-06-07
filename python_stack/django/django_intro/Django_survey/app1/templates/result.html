@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Submitted info:</h2>
+        <div class="show">
+            <p>Name:</p> 
+            <p>{{ name_on_template }}</p>
+        </div>
+        <div class="show">
+            <p>Dojo Location:</p>
+            <p>{{ location }}</p>
+        </div>
+        <div class="show">
+            <p>Favorite Language:</p>
+            <p>{{ fav_language }}</p>
+        </div>
+        <div class="show">
+        <p>Comment:</p>
+        <p>{{ comment }}</p>
+        </div>
+        <p>
+            <button type="submit" class="btn1">Go Back</button>
+        </p>
+    </div>
+</body>
+</html>
