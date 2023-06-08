@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/stylesheet1.css' %}">
+</head>
+<body>
+    <h1 class="text-center">Welcome to the Great Number Game!</h1>
+    <h3 class="text-center">I am thinking of a number between 1 and 100</h3>
+    <h3 class="text-center">Take a guess!</h3>
+    {%if count < 5 %}
+        <div>
+            {% if guessNum == 0 %}
+                <p></p>
+            {% elif randomNum  > guessNum %}
+                <h1>hello</h1>
+                <p class="red">Too Low!</p>
+            {% elif randomNum < guessNum %}
+                <p class="red">Too High!</p>      
+            {% endif %}
+        </div>
+
+        {% if randomNum  == guessNum %}
+            <form action="/reset" method="post">
+                {% csrf_token %}
+                <p class="green">{{ randomNum }} was the Number!
+                    <input type="submit" value="Play again" class="bttn"> 
+                </p>
+                <p class="text-center">Guess after {{ count }} attempt(s)</p>
+            </form>
+        {% else %}
+            <form action='/guess' method='post'>
+                {% csrf_token %}
+                <p><input type="text" name="answer"></p>
+                <p><input type="submit" value="submit" class="bttn"></p>
+            </form>
+        {% endif %} 
+
+    {% elif count == 5 %}
+        <form action="/reset" method="post">
+            {% csrf_token %}
+            <p class="text-center">you loose try again</p>
+            <p class="text-center"><input type="submit" value="Try again" class="bttn"></p>   
+        </form>
+    {% endif %}
+</body>
+</html>
