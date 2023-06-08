@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Your Gold:  {{ gold }}</h1>
+    </header>
+    <div class ="container">
+        <div class="box">
+            <h3 class="text-center">Farm</h3>
+            <p class="text-center">(earns 10-20 golds)</p>
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="farm" />
+                <p class="text-center"><input type="submit" value="Find Gold!" class="bttn"/></p>
+            </form>
+        </div>
+        
+        <div class="box">
+            <h3 class="text-center">Cave</h3>
+            <p class="text-center">(earns 5-10 golds)</p>
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="cave" />
+                <p class="text-center"><input type="submit" value="Find Gold!" class="bttn"/></p>
+            </form>
+        </div>
+
+        <div class="box">
+            <h3 class="text-center">House</h3>
+            <p class="text-center">(earns 2-5 golds)</p>
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="house" />
+                <p class="text-center"><input type="submit" value="Find Gold!" class="bttn"/></p>
+            </form>
+        </div>
+
+        <div class="box">
+            <h3 class="text-center">Casino</h3>
+            <p class="text-center">(earns/takes 0-50 golds)</p>
+            <form action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="casino" />
+                <p class="text-center"><input type="submit" value="Find Gold!" class="bttn"/></p>
+            </form>
+        </div>
+    </div>
+    <div class="activities">
+        {% for i in comments %}
+            {% if "Earned" in i %}
+                <p class="green">{{i}}</p>
+            {% else %}
+                <p class="red">{{i}}</p> 
+            {% endif %}      
+        {% endfor %}
+    </div>
+
+    {% if counter >= 15 and  gold < 500 %}
+        <h2 class="text-center red">Ooops You try {{counter}} times! </h2>
+        <div class="reset">
+            <form action='/reset' method="post">
+                {% csrf_token %}
+                <p class="text-center">You loose Click below to reset<br>and try again.<br></p>
+                <p class="text-center"><input type="submit" name="reset" value="Play again" class="bttn"></p>
+            </form>
+        </div>
+    {% elif counter <= 15 and  gold == 500 %}
+        <h2 class="text-center green">You try {{counter}} times </h2>
+        <div class="reset"></div>
+            <form action='/reset' method="post">
+                {% csrf_token %}
+                <p class="text-center">You Win! Click below to reset<br>and play again.<br></p>
+                <p class="text-center"><input type="submit" name="reset" value="Play again" class="bttn"></p>
+            </form>
+        </div>
+    {% endif %}
+</body>
+</html>
