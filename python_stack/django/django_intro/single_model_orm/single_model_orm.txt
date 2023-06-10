@@ -1,0 +1,61 @@
+1)Create a model called User following the ERD above:
+class Users(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email_address = models.CharField(max_length=255)
+    age = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+2)Create and run the migration files to create the User table in your data:
+  > python manage.py makemigrations
+  > python manage.py migrate
+
+3)Run the shell and import your User model:
+from users_app.models import *
+
+4)Query: Create 3 new users:
+ Users.objects.create(first_name='Ana', last_name='Mikle', email_address='Ana123@gmail.com', age='20', created_at='1-1-2020', updated_at='20-3-2022')
+ Users.objects.create(first_name='Jack', last_name='Mark', email_address='jackM@gmail.com', age='25', created_at='1-1-2018', updated_at='20-5-2022')
+ Users.objects.create(first_name='Dany', last_name='Jane', email_address='danyjane@gmail.com', age='23', created_at='11-4-2019', updated_at='1-8-2022')
+
+5)Query: Retrieve all the users:
+>>> Users.objects.all()
+<QuerySet [<Users: Users object (1)>, <Users: Users object (2)>, <Users: Users object (3)>]>
+
+6)Query: Retrieve the last user:
+>>> Users.objects.last()
+<Users: Users object (3)>
+
+7)Query: Retrieve the first user:
+>>> Users.objects.first()
+<Users: Users object (1)>
+
+8)Query: Change the user with id=3 so their last name is Pancakes:
+ Users.objects.get(id=3)
+<Users: Users object (3)>
+>>> third=Users.objects.get(id=3)
+>>> third.last_name='Pancakes'
+>>> print(third.last_name)
+Pancakes
+
+9)Query: Delete the user with id=2 from the database:
+second=Users.objects.get(id=2)
+>>> second.delete()
+(1, {'users_app.Users': 1})
+>>> Users.objects.all()
+<QuerySet [<Users: Users object (1)>, <Users: Users object (3)>]>
+
+10)Query: Get all the users, sorted by their first name:
+all_users=Users.objects.all()
+for user in all_users:
+...     print(user.last_name)
+...
+Mikle
+Jane
+
+11)BONUS Query: Get all the users, sorted by their first name in descending order:
+ Users.objects.all().order_by("-first_name")
+<QuerySet [<Users: Users object (3)>, <Users: Users object (1)>]>
+
+

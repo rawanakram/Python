@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <h1>All the Users</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+        </tr>
+        {%for user in all_the_users%}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.email_address }}</td>
+            <td>{{ user.age }}</td>   
+        </tr>
+        {% endfor %} 
+    </table>
+    <hr>
+    <h1>Add Users</h1>
+    <form action="/process" method="post">
+    {% csrf_token %}
+        <p>
+            <span>
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="first_name">
+            </span>
+            <span>
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="last_name">
+            </span>
+        </p>
+        <div>
+            <span>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </span>
+            <span>
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age">
+            </span>
+        </div>
+        <h1><input type="submit" value="Add" class="bttn"></h1>
+    </form>
+
+
+</body>
+</html>
