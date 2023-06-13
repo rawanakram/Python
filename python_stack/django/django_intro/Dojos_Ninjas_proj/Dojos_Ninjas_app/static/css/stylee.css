@@ -1,0 +1,12 @@
+.form1{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+.form{
+    height: 70%;
+    display: flex;
+    justify-items: space-between;
+
+}
