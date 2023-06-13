@@ -54,28 +54,28 @@
     <hr>
            
 
-
-    <h1>All the Dojos</h1>
-    <form action='/delete' method='POST'>
-        {% csrf_token %}
-        <ul>
-        {% for dojo in dojos %}
-            <h4><li>Ninjas at the {{dojo.name}} Dojo 
-                    <input type="hidden" name='del' value="{{dojo.id}}">
-                    <input type='submit' value='delete'>
-                </li> 
-            </h4>
+    <div class="info">
+        <h1>All the Dojos</h1>
+        <form action='/delete' method='POST'>
+            {% csrf_token %}
             <ul>
-            <!-- looping through each dojo's ninjas! -->
-            {% for ninja in dojo.dojos.all %}	
-                <li><em>{{ninja.first_name}} {{ninja.last_name}}</em></li>
+            {% for dojo in dojos %}
+                <h4><li>Ninjas at the {{dojo.name}} Dojo 
+                        <input type="hidden" name='del' value="{{dojo.id}}">
+                        <input type='submit' value='delete'>
+                    </li> 
+                </h4>
+                <ul>
+                <!-- looping through each dojo's ninjas! -->
+                {% for ninja in dojo.dojos.all %}	
+                    <li><em>{{ninja.first_name}} {{ninja.last_name}}</em></li>
+                {% endfor %}
+                </ul>
+                    
             {% endfor %}
             </ul>
-                
-        {% endfor %}
-        </ul>
-    </form>              
-                
+        </form>              
+    </div>          
            
         
     

@@ -10,3 +10,15 @@
     justify-items: space-between;
 
 }
+
+.info{
+    width: 30%;
+    margin: 0 auto;
+}
+h1{
+    margin-left: 2em;
+}
+hr{
+    width: 70%;
+    margin: 0 auto;
+}
