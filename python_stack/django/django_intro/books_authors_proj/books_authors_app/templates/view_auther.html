@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auther Detailst</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <div class="view">
+        <h1>{{ auther.first_name }} {{ auther.last_name }}</h1>
+        <h3>ID: {{ auther.id }}</h3>
+        <h3>Notes: <span>{{ auther.notes }}</span></h3>
+
+        <h3>Authers</h3>
+        <ul>
+            {% for book in all_auther_books %}
+                <li><em>{{ book.title }}</em></li>
+            {% endfor%}
+        </ul>
+
+        <form action="/add_book" method="POST">
+            {% csrf_token %}
+            <select name="books">
+                <option value = "">-select abook-</option>
+                {% for book in all_books %}
+                    <option value="{{book.id}}">{{ book.title }}</option>
+                {% endfor%}
+            </select>
+            <input type="hidden" name = "authers" value="{{auther.id}}">
+            <button type="submit">Add</button>
+        </form>
+    </div>
+</body>
+</html>

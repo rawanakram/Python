@@ -1,0 +1,39 @@
+body{
+    padding: 1em;
+}
+.form1{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+.form{
+    height: 70%;
+    display: flex;
+    justify-items: space-between;
+}
+table, td, th{
+    border: 1px solid black;
+}
+table {
+    border-collapse: collapse;
+    width: 30%;
+    margin: 0 auto;
+  }
+  
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+th{
+    background-color:silver;
+    padding: 4px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+.view{
+    width: 40%;
+    border: 3px solid green;
+    margin-left:4em;
+    padding: 1em;
+}
