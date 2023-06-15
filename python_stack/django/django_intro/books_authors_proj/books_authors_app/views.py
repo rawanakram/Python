@@ -24,7 +24,7 @@ def addbook(request):
 def viewbook(request, book_id):
     book =Book.objects.get(id=book_id)
     all_book_authers =book.authers.all()
-    all_authers = Auther.objects.all()
+    all_authers = Auther.objects.exclude(books = book_id)
     context = {
         "book":book,
         'all_book_authers':all_book_authers,
@@ -63,7 +63,7 @@ def addauther(request):
 def viewauther(request, auther_id):
     auther = Auther.objects.get(id=auther_id)
     all_auther_books =auther.books.all()
-    all_books = Book.objects.all()
+    all_books = Book.objects.exclude(authers = auther_id)
     context = {
         "auther":auther,
         'all_auther_books':all_auther_books,
