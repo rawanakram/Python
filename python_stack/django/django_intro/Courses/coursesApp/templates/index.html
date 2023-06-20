@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style_courses.css' %}">
+</head>
+<body>
+    <h2>Add a new course</h2>
+
+    {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+    <form action="/add" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div>
+                <p><label for="name">Name:</label></p>
+                <p><label for="desription">Desription:</label></p>
+            </div>
+            <div>
+                <p><input type="text" name="name" id="name"></p>
+                <p><textarea name="description" id="description" cols="30" rows="6"></textarea></p>
+            </div> 
+        </div>
+        <!-- <input type="hidden" name = "courses" value="{{show.id}}"> -->
+        <p><button type="submit" class="btn">Add</button></p>
+    </form>
+    <h2>Courses</h2>  
+    <table>
+        <tr>
+            <th>Courses Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for course in all_courses %}
+        <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.description }}</td>
+            <td>{{ course.created_at }}</td>
+            <td><a href="courses/destroy/{{course.id}}">Remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
