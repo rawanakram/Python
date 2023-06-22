@@ -25,19 +25,19 @@
         <form action="/update/{{show.id}}" method="post">
             {% csrf_token %}
             <p><label for="title">Title</label></p>
-            <p><input type="text" name="title" id="title"></p>   
+            <p><input type="text" name="title" id="title" value="{{ show.title }}"></p>   
             <p>
                 <label for="network">Network</label>
                 <label for="releasedate" class="left">Release Date</label>
                 
             </p>   
             <p>
-                <input type="text" name="network" id="network" >
-                <input type="date" name="releasedate" id="releasedate">
+                <input type="text" name="network" id="network" value="{{ show.network }}">
+                <input type="date" name="releasedate" id="releasedate" value="{{ show.release_date }}">
             </p>
 
             <p><label for="desc">Description</label></p>
-            <textarea name="desc" id="desc" cols="50" rows="8"></textarea>
+            <textarea name="desc" id="desc" cols="50" rows="8">{{ show.desc }}</textarea>
 
             <input type="hidden" name = "shows" value="{{show.id}}">
             <p><button type="submit" class="btn">Update</button></p>
