@@ -1,0 +1,36 @@
+.loginreg{
+    padding:20px;
+    width:80%;
+    display:flex;
+    justify-content: space-evenly;
+}
+table{
+    border-spacing: 25px 25px;
+}
+td{
+    text-align:left;
+   
+}
+
+.errors{
+    margin:0px auto;
+    width:600px;
+    color:red;
+    text-align:left;
+}
+.right{
+    text-align:right;
+}
+h2{
+    color: blue;
+    margin-left: 1em;
+}
+.btn{
+    height: 2em;
+    width: 5em;
+    cursor: pointer;
+    box-shadow: 3px 3px  black;
+    background-color: blue;
+    color: aliceblue;
+    margin-top: 1em;
+}
