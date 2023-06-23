@@ -13,7 +13,6 @@
         <p><a href="/logout">logout</a></p>
     </div>
     <hr>
-
     <div class="loginreg">
         <div class="form1">
             <h2>Add a Favorite Book</h2>
@@ -25,6 +24,15 @@
                     <tr><td><input type="submit" value="Add" class="btn"></td></tr>
                 </table>
             </form>
+            <div class="errors">
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
         </div>
 
         <div class="form2">
@@ -46,6 +54,6 @@
             </table>
         </div>   
     </div>
-
+    
 </body>
 </html>

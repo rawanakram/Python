@@ -33,7 +33,7 @@ def register(request):
 
 def login(request):
     errors2 = User.objects.login_validator(request.POST)
-    print(errors2)
+   
     if len(errors2) > 0:
         for key, value in errors2.items():
             messages.error(request, value)
@@ -72,13 +72,21 @@ def logout(request):
 
 
 def add_book(request):
-    user_upload = User.objects.get(id= request.session['user_id'])
-    book = Book.objects.create(
-        title = request.POST['title'],
-        description = request.POST['description'],
-        uploaded_by = user_upload)
-    user_upload.liked_books.add(book)
-    return redirect('/books')
+    errors3 = Book.objects.book_validator(request.POST)
+    
+    if len(errors3) > 0:
+        for key, value in errors3.items():
+            messages.error(request, value)
+        return redirect('/books')
+
+    else:
+        user_upload = User.objects.get(id= request.session['user_id'])
+        book = Book.objects.create(
+            title = request.POST['title'],
+            description = request.POST['description'],
+            uploaded_by = user_upload)
+        user_upload.liked_books.add(book)
+        return redirect('/books')
 
 
 def book_details(request, id):
@@ -94,11 +102,19 @@ def book_details(request, id):
 
 
 def update(request, id):
-    book_update = Book.objects.get(id=id)
-    book_update.title = request.POST['title']
-    book_update.description = request.POST['description']
-    book_update.save()
-    return redirect('/books')
+    errors3 = Book.objects.book_validator(request.POST)
+    
+    if len(errors3) > 0:
+        for key, value in errors3.items():
+            messages.error(request, value)
+        return redirect(f'/books/{id}')
+
+    else:
+        book_update = Book.objects.get(id=id)
+        book_update.title = request.POST['title']
+        book_update.description = request.POST['description']
+        book_update.save()
+        return redirect('/books')
 
 
 def delete(request, id):

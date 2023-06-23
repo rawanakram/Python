@@ -21,7 +21,6 @@ class UserManager(models.Manager):
 
 
     def login_validator(self, postData):
-
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         errors2 = {}
         email2 = postData['email2']
@@ -33,10 +32,7 @@ class UserManager(models.Manager):
             errors2["email2"] = "Invalid Email Address!"
         elif not bcrypt.checkpw(password2.encode(), usr[0].password.encode()):
             errors2["password2"] = "Incorrect password. Try again!"
-            
         return errors2
-
-
 
 class User(models.Model):
     first_name = models.CharField(max_length=255)
@@ -45,9 +41,16 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
     objects = UserManager()
 
+class BookManager(models.Manager):
+      def book_validator(self, postData):
+        errors3 = {}
+        if len(postData["title"]) < 1:
+            errors3["title"] = "The book's title is required"
+        if len(postData["description"]) < 5:
+            errors3["description"] = "The book's description should be at least 5 characters"
+        return errors3
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
@@ -56,3 +59,4 @@ class Book(models.Model):
     users_who_like = models.ManyToManyField(User, related_name="liked_books")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = BookManager()
