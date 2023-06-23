@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/loginreg.css' %}">
+</head>
+<body>
+    <div class="top">
+        <h2>Welcome, {{user_name}}!</h2>
+        <p><a href="/logout">logout</a></p>
+    </div>
+    <hr>
+
+    <div class="loginreg">
+        <div class="form1">
+            <h2>Add a Favorite Book</h2>
+            <form method="POST" action="/add_book">
+                {% csrf_token %}
+                <table>
+                    <tr><td>Title:</td><td><input type="text" name="title"></td></tr>
+                    <tr><td>Description:</td><td><input type="text" name="description"></td></tr>
+                    <tr><td><input type="submit" value="Add" class="btn"></td></tr>
+                </table>
+            </form>
+        </div>
+
+        <div class="form2">
+            <h2>All Books</h2>
+            <table>
+                <tr>
+                    <td>
+                        {% for book in all_books %}
+                        <h3><a href="/books/{{book.id}}">{{ book.title }}</a></h3>
+                        <p>Added by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+                        {% if user in book.users_who_like.all %}
+                            <p><em>This is one of your favorites</em></p>
+                        {% elif user not in book.users_who_like.all  %}
+                            <p><a href="/books/{{book.id}}/addFavorite">Add to favorites</a></p>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+        </div>   
+    </div>
+
+</body>
+</html>

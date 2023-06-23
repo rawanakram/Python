@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/loginreg.css' %}">
+</head>
+<body>
+    <div class="top">
+        <h2>Welcome, {{current_user.first_name }}!</h2>
+        <p><a href="/logout">logout</a></p>
+    </div>
+    <hr>
+    <div class="details">
+        <div>
+            {% if book.uploaded_by.id != request.session.user_id %}
+
+            <h3>{{ book.title }}</h3>
+            <p>Added By: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+            <p>Added On: {{ book.created_at }}</p>
+            <p>Last Update: {{ book.updated_at }}</p>
+            <p>Description: {{ book.description }}</p>
+
+            {% else %}
+
+            <form action="/books/{{book.id}}/update" method="post">
+                {% csrf_token %}
+                <input type="text" name="title" value="{{ book.title }}">
+                <p>Added By: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+                <p>Added On: {{ book.created_at }}</p>
+                <p>Last Update: {{ book.updated_at }}</p>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" cols="20" rows="5">{{ book.description }}</textarea>
+                <p>
+                    <input type="submit" value="Update" class="btn1">
+                    <input type="submit" value="Delete" formaction="/books/{{book.id}}/delete" class="btn2">
+                </p>
+            {% endif %}
+        </div>
+        <div>
+            <h3>Users who like this book:</h3>
+            <ul>
+            {% for user in book.users_who_like.all %}
+                <li>{{ user.first_name }} {{ user.last_name }}</li>
+            {% endfor %}
+            {% if book.uploaded_by.id != request.session.user_id %}
+                <a href="/books/{{book.id}}/addFavorite">Add to Favorite</a>
+            {% else %}
+                <a href="/books/{{book.id}}/unfavorite">Un-Favorite</a>
+            {% endif %}
+            </ul>
+            
+        </div>
+    </div>
+    
+</body>
+</html>
